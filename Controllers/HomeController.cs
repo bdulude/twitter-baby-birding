@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MarkovSharp.TokenisationStrategies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using twitter_baby_birding.Models;
@@ -23,9 +24,31 @@ namespace twitter_baby_birding.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost("barf")]
+        public IActionResult Generate(string username)
         {
-            return View();
+            // Get the tweets for a user
+
+            // Format tweets as training data
+            string[] tweets = new string[]
+            {
+                "Frankly, my dear, I don't give a damn.",
+                "Mama always said life was like a box of chocolates. You never know what you're gonna get.",
+                "Many wealthy people are little more than janitors of their possessions."
+            };
+
+            // Create a new model
+            var model = new StringMarkov(1);
+
+            // Train the model
+            model.Learn(tweets);
+
+            // Create some permutations
+            string barf = model.Walk().First();
+
+            // Pass generated tweet to a ViewModel
+
+            return View("Generate", barf);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
