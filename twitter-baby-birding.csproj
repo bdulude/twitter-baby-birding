@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CoreTweet" Version="1.0.0.483" />
     <PackageReference Include="log4net" Version="2.0.14" />
     <PackageReference Include="MarkovSharp" Version="4.0.32" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
@@ -15,6 +16,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
     <PackageReference Include="Sanford.Multimedia.Midi" Version="6.6.2" />
+    <PackageReference Include="CoreTweet" Version="1.0.0.483" />
   </ItemGroup>
 
 </Project>
