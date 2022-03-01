@@ -25,8 +25,9 @@ namespace twitter_baby_birding.Controllers
         }
 
         [HttpPost("barf")]
-        public IActionResult Generate(string username)
+        public IActionResult Generate(TwitterHandle handle)
         {
+            ViewBag.handle = handle;
             // Get the tweets for a user
 
             // Format tweets as training data
@@ -48,7 +49,7 @@ namespace twitter_baby_birding.Controllers
 
             // Pass generated tweet to a ViewModel
 
-            return View("Generate", barf);
+            return RedirectToAction("Generate", barf);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
