@@ -49,7 +49,7 @@ namespace twitter_baby_birding.Controllers
 
             // Pass generated tweet to a ViewModel
 
-            return RedirectToAction("Generate", barf);
+            return View("Generate", barf);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using twitter_baby_birding.Models;
-using CoreTweet;
-using CoreTweet.Streaming;
 using TwitterSharp;
 using TwitterSharp.Request.AdvancedSearch;
 

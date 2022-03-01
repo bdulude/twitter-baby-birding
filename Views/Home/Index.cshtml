@@ -3,14 +3,14 @@
 }
 @model TwitterHandle
 <div class="text-center vertical-center">
-    <h4>Like if the ocean was filled with tweets, and your parent just came back to feed you, and you are a baby emperor penguin</h4>
+    <h4 class="text-light">Like if the ocean was filled with tweets, and your parent just came back to feed you, and you are a baby emperor penguin</h4>
     <form asp-controller="Home" asp-action="Generate">
         <div class="form-group">
-            <div class="input-group input-group-lg w-75 mx-auto">
+            <div class="input-group input-group-lg w-50 mx-auto">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">@@</span>
                 </div>
-                <input asp-for="Handle" placeholder="A Twitter handle" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+                <input asp-for="Handle" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
             </div>
         </div>
         <button class="btn btn-outline-success">Vomit</button>
