@@ -15,7 +15,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
     <PackageReference Include="Sanford.Multimedia.Midi" Version="6.6.2" />
-    <PackageReference Include="TwitterSharp" Version="1.5.0" />
+    <PackageReference Include="TwitterSharp_Rice" Version="1.5.0.1" />
   </ItemGroup>
 
 </Project>

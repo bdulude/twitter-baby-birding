@@ -25,12 +25,12 @@ namespace twitter_baby_birding.Controllers
             return new JsonResult(new{data = FindByHandle(twitterHandle)});
         }
 
-        public static async Task<TwitterSharp.Response.RTweet.Tweet[]> FindByHandle(string twitterHandle)
+        public async Task<TwitterSharp.Response.RTweet.Tweet[]> FindByHandle(string twitterHandle)
         {
             var client = new TwitterSharp.Client.TwitterClient(TwitterKeys.Bearer);
             var user = await client.GetUserAsync(twitterHandle);
             Console.WriteLine(user.Id);
-            var tweets = await client.GetTweetsFromUserIdAsync(user.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url });
+            var tweets = await client.GetTweetsFromUserIdAsyncCount(user.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url },100);
             // for (int i = 0; i < tweets.Length; i++)
             // {
             //     var tweet = tweets[i];
@@ -43,7 +43,6 @@ namespace twitter_baby_birding.Controllers
             //     }
             //     Console.WriteLine("\n");
             // }
-            await TweetController.FindByHandle(twitterHandle);
             return tweets; 
 
         }
@@ -84,7 +83,7 @@ namespace twitter_baby_birding.Controllers
             var client = new TwitterSharp.Client.TwitterClient(TwitterKeys.Bearer);
             var user = await client.GetUserAsync(TwitterHandle);
             Console.WriteLine(user.Id);
-            var tweets = await client.GetTweetsFromUserIdAsync(user.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url });
+            var tweets = await client.GetTweetsFromUserIdAsyncCount(user.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url },100);
 
             return tweets; 
         }
