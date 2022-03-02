@@ -43,15 +43,14 @@ namespace twitter_baby_birding.Controllers
         public async Task<IActionResult> Generate(TwitterHandle username)
         {
             // Get the tweets for a user
-            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(handle.Handle);
+            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(username.Handle);
 
             if(user == null){
                 //It errored out...
                 return View("Index");
             }
 
-            TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
-            TweetArr = await TweetFetcher.FindByHandle(user);
+            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(user);
             for(int i = 0; i < TweetArr.Length; i++)
             {
                 //Then here in your console you'll be able to see the text output of each tweet gotten
