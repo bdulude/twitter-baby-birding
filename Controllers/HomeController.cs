@@ -39,12 +39,13 @@ namespace twitter_baby_birding.Controllers
         }
 
         [HttpPost("barf")]
-        public async Task<IActionResult> Generate(string username)
+        public async Task<IActionResult> Generate(TwitterHandle handle)
         {
+            ViewBag.handle = handle;
             // Get the tweets for a user
-            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser("asdjkehjfkd");
-            if(user == null)
-            {
+            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(handle.Handle);
+
+            if(user == null){
                 //It errored out...
                 return View("Index");
             }
