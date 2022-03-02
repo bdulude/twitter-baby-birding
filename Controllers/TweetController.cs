@@ -98,10 +98,10 @@ namespace twitter_baby_birding.Controllers
         ///</summary>
         ///<param name="User">A TwitterSharp.Response.RUser.User Object that we would have gotten using GetUser is null</param>
         ///<returns>TTwitterSharp.Response.RTweet.Tweet[]</returns>
-        public static async Task<TwitterSharp.Response.RTweet.Tweet[]> FindByHandle(TwitterSharp.Response.RUser.User User)
+        public static async Task<TwitterSharp.Response.RTweet.Tweet[]> FindByHandle(TwitterSharp.Response.RUser.User User, int amount = 100)
         {
             var client = new TwitterSharp.Client.TwitterClient(TwitterKeys.Bearer);
-            var tweets = await client.GetTweetsFromUserIdAsyncCount(User.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url },100);
+            var tweets = await client.GetTweetsFromUserIdAsyncCount(User.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url },amount);
             return tweets; 
         }
     }
