@@ -1,8 +1,44 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Baby Bird";
 }
-
+@model TwitterHandle
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h4 class="text-light mb-5 w-50 mx-auto">Like if the ocean was filled with tweets, and your parent just came back to feed you, and you are a baby emperor penguin</h4>
+    <form asp-controller="Home" asp-action="Generate" class="mb-5">
+        <div class="form-group">
+            <div class="input-group input-group-lg w-50 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for="Handle" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+        </div>
+        <button class="btn btn-success">Vomit</button>
+    </form>
+    <h5 class="text-light mb-3 mx-auto">Try one of these meals:</h3>
+    <div class="d-flex justify-content-between">
+        <div class="card text-white bg-success" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Donald Trump</h5>
+                <a href="#" class="btn btn-success">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card text-white bg-success" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-success">Go somewhere</a>
+            </div>
+        </div>
+        <div class="card text-white bg-success" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-success">Go somewhere</a>
+            </div>
+        </div>
+    </div>
 </div>

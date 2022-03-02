@@ -32,10 +32,11 @@ namespace twitter_baby_birding.Controllers
         }
 
         [HttpPost("barf")]
-        public async Task<IActionResult> Generate(string username)
+        public async Task<IActionResult> Generate(TwitterHandle handle)
         {
+            ViewBag.handle = handle;
             // Get the tweets for a user
-            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(username);
+            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(handle.Handle);
 
             for(int i = 0; i < TweetArr.Length; i++)
             {
