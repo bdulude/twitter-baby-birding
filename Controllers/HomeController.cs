@@ -21,49 +21,32 @@ namespace twitter_baby_birding.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        [HttpGet("")]
+        public IActionResult Index()
         {
-            //So this will fetch all the tweets with a twitterhandle
-            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser("asdjkehjfkd");
-            if(user != null)
-            {
-                TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
-                TweetArr = await TweetFetcher.FindByHandle(user);
-                for(int i = 0; i < TweetArr.Length; i++)
-                {
-                    //Then here in your console you'll be able to see the text output of each tweet gotten
-                    Console.WriteLine(TweetArr[i].Text);
-                }
-            }
-            return View();
+            return View("Index");
         }
 
         [HttpPost("barf")]
-        public async Task<IActionResult> Generate(TwitterHandle handle)
+        public async Task<IActionResult> Generate(TwitterHandle username)
         {
-            ViewBag.handle = handle;
             // Get the tweets for a user
-            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(handle.Handle);
+            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(username.Handle);
 
             if(user == null){
                 //It errored out...
+                ModelState.AddModelError("Handle", "This twitter account was not found.");
                 return View("Index");
             }
 
-            TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
-            TweetArr = await TweetFetcher.FindByHandle(user);
+            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(user);
             for(int i = 0; i < TweetArr.Length; i++)
             {
                 //Then here in your console you'll be able to see the text output of each tweet gotten
                 Console.WriteLine(TweetArr[i].Text);
             }
             // Format tweets as training data
-            string[] tweets = new string[]
-            {
-                "Frankly, my dear, I don't give a damn.",
-                "Mama always said life was like a box of chocolates. You never know what you're gonna get.",
-                "Many wealthy people are little more than janitors of their possessions."
-            };
+            string[] tweets = TweetArr.Where(t => !t.Text.StartsWith("RT @")).Select(t => t.Text).ToArray();
 
             // Create a new model
             var model = new StringMarkov(1);
