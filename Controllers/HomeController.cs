@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using twitter_baby_birding.Models;
 using TwitterSharp;
+using TwitterSharp.Response;
 
 namespace twitter_baby_birding.Controllers
 {
@@ -24,11 +25,16 @@ namespace twitter_baby_birding.Controllers
         public async Task<IActionResult> Index()
         {
             //So this will fetch all the tweets with a twitterhandle
-            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle("Northernlion");
-            for(int i = 0; i < TweetArr.Length; i++)
+            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser("asdjkehjfkd");
+            if(user != null)
             {
-                //Then here in your console you'll be able to see the text output of each tweet gotten
-                Console.WriteLine(TweetArr[i].Text);
+                TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
+                TweetArr = await TweetFetcher.FindByHandle(user);
+                for(int i = 0; i < TweetArr.Length; i++)
+                {
+                    //Then here in your console you'll be able to see the text output of each tweet gotten
+                    Console.WriteLine(TweetArr[i].Text);
+                }
             }
             return View("Index");
         }
@@ -37,8 +43,20 @@ namespace twitter_baby_birding.Controllers
         public async Task<IActionResult> Generate(TwitterHandle username)
         {
             // Get the tweets for a user
-            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(username.Handle);
+            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(handle.Handle);
 
+            if(user == null){
+                //It errored out...
+                return View("Index");
+            }
+
+            TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
+            TweetArr = await TweetFetcher.FindByHandle(user);
+            for(int i = 0; i < TweetArr.Length; i++)
+            {
+                //Then here in your console you'll be able to see the text output of each tweet gotten
+                Console.WriteLine(TweetArr[i].Text);
+            }
             // Format tweets as training data
             string[] tweets = TweetArr.Where(t => !t.Text.StartsWith("RT @")).Select(t => t.Text).ToArray();
 
