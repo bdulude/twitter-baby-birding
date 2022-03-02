@@ -9,5 +9,6 @@ namespace twitter_baby_birding.Models
         public string Author {get; set;}
         public string Content {get; set;}
         public string Date_time {get; set;}
+        public User User {get; set;}
     }
 }
