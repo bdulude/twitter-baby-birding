@@ -24,18 +24,18 @@ namespace twitter_baby_birding.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            //So this will fetch all the tweets with a twitterhandle
-            TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser("asdjkehjfkd");
-            if(user != null)
-            {
-                TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
-                TweetArr = await TweetFetcher.FindByHandle(user);
-                for(int i = 0; i < TweetArr.Length; i++)
-                {
-                    //Then here in your console you'll be able to see the text output of each tweet gotten
-                    Console.WriteLine(TweetArr[i].Text);
-                }
-            }
+            // //So this will fetch all the tweets with a twitterhandle
+            // TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser("asdjkehjfkd");
+            // if(user != null)
+            // {
+            //     TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
+            //     TweetArr = await TweetFetcher.FindByHandle(user);
+            //     for(int i = 0; i < TweetArr.Length; i++)
+            //     {
+            //         //Then here in your console you'll be able to see the text output of each tweet gotten
+            //         Console.WriteLine(TweetArr[i].Text);
+            //     }
+            // }
             return View("Index");
         }
 
@@ -47,6 +47,7 @@ namespace twitter_baby_birding.Controllers
 
             if(user == null){
                 //It errored out...
+                ModelState.AddModelError("Handle", "This twitter account was not found.");
                 return View("Index");
             }
 
