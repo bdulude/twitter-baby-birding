@@ -19,15 +19,28 @@ namespace twitter_baby_birding.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            //So this will fetch all the tweets with a twitterhandle
+            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle("Northernlion");
+            for(int i = 0; i < TweetArr.Length; i++)
+            {
+                //Then here in your console you'll be able to see the text output of each tweet gotten
+                Console.WriteLine(TweetArr[i].Text);
+            }
             return View();
         }
 
         [HttpPost("barf")]
-        public IActionResult Generate(string username)
+        public async Task<IActionResult> Generate(string username)
         {
             // Get the tweets for a user
+            TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(username);
+
+            for(int i = 0; i < TweetArr.Length; i++)
+            {
+                Console.WriteLine(TweetArr[i].Text);
+            }
 
             // Format tweets as training data
             string[] tweets = new string[]
