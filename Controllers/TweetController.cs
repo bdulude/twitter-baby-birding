@@ -22,6 +22,7 @@ namespace twitter_baby_birding.Controllers
         [HttpGet("Tweet/{twitterHandle}")]
         public IActionResult Index(string twitterHandle)
         {
+            // return new JsonResult(new{data = FindByHandle(twitterHandle)});
             return new JsonResult(new{data = FindByHandle(twitterHandle)});
         }
 
@@ -78,13 +79,29 @@ namespace twitter_baby_birding.Controllers
         //
         // Returns:
         //     An asychronous call that returns a listn array of Tweets
-        public static async Task<TwitterSharp.Response.RTweet.Tweet[]> FindByHandle(string TwitterHandle)
+        
+        ///<summary>
+        ///Takes in a string to see if the user exists
+        ///Then Returns the found user or null
+        ///</summary>
+        ///<param name="TwitterHandle">The @TwitterHandle we're looking for</param>
+        ///<returns>TwitterSharp.Response.RUser.User OR null</returns>
+        public static async Task<TwitterSharp.Response.RUser.User> GetUser(string TwitterHandle)
         {
             var client = new TwitterSharp.Client.TwitterClient(TwitterKeys.Bearer);
             var user = await client.GetUserAsync(TwitterHandle);
-            Console.WriteLine(user.Id);
-            var tweets = await client.GetTweetsFromUserIdAsyncCount(user.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url },100);
+            return user;
+        }
 
+        ///<summary>
+        ///Takes in a TwitterSharp.Response.RUser.User object 
+        ///</summary>
+        ///<param name="User">A TwitterSharp.Response.RUser.User Object that we would have gotten using GetUser is null</param>
+        ///<returns>TTwitterSharp.Response.RTweet.Tweet[]</returns>
+        public static async Task<TwitterSharp.Response.RTweet.Tweet[]> FindByHandle(TwitterSharp.Response.RUser.User User, int amount = 100)
+        {
+            var client = new TwitterSharp.Client.TwitterClient(TwitterKeys.Bearer);
+            var tweets = await client.GetTweetsFromUserIdAsyncCount(User.Id, new TweetOption[] { TweetOption.Created_At }, null, new MediaOption[] { MediaOption.Url },amount);
             return tweets; 
         }
     }
