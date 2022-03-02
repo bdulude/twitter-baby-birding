@@ -7,6 +7,7 @@ using MarkovSharp.TokenisationStrategies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using twitter_baby_birding.Models;
+using TwitterSharp;
 
 namespace twitter_baby_birding.Controllers
 {
