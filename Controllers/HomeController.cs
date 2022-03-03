@@ -96,6 +96,12 @@ namespace twitter_baby_birding.Controllers
             return View("Generate", barf);
         }
 
+        [HttpGet("about")]
+        public ViewResult About()
+        {
+            return View("About");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
