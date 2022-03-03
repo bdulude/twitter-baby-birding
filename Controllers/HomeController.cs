@@ -86,6 +86,7 @@ namespace twitter_baby_birding.Controllers
         public IActionResult Celeb(string celeb)
         {
 
+            ViewBag.celeb = celeb;
             // Create a new model
             var model = new StringMarkov(2);
 
@@ -101,7 +102,7 @@ namespace twitter_baby_birding.Controllers
 
             // Pass generated tweet to a ViewModel
 
-            return View("Generate", barf);
+            return View("GenerateCeleb", barf);
         }
 
         [HttpGet("about")]
