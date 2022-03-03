@@ -32,6 +32,7 @@ namespace twitter_baby_birding.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
+            ViewBag.celebs = db.Users;
             return View("Index");
         }
 
@@ -41,6 +42,7 @@ namespace twitter_baby_birding.Controllers
             if(username.Handle == null){
                 // Check if they actually entered anything
                 ModelState.AddModelError("Handle", "This twitter account was not found.");
+                ViewBag.celebs = db.Users;
                 return View("Index");
             }
             // Get the user
@@ -75,14 +77,14 @@ namespace twitter_baby_birding.Controllers
             return View("Generate", barf);
         }
 
-        [HttpGet("celeb")]
-        public IActionResult Celeb()
+        [HttpGet("{celeb}")]
+        public IActionResult Celeb(string celeb)
         {
 
             // Create a new model
             var model = new StringMarkov(2);
 
-            var tweets = db.Tweets.Where(t=>t.Author == "trump").Select(t => t.Content);
+            var tweets = db.Tweets.Where(t=>t.Author == celeb).Select(t => t.Content);
             // Train the model
             model.Learn(tweets);
 
