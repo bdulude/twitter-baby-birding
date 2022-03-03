@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using twitter_baby_birding.Models;
 using TwitterSharp;
 using TwitterSharp.Response;
+using System.Web;
 
 namespace twitter_baby_birding.Controllers
 {
@@ -68,7 +69,11 @@ namespace twitter_baby_birding.Controllers
             model.Learn(tweets);
 
             // Create some permutations
-            string barf = model.Walk().First();
+            List<string> barf = new List<string>();
+            barf.Add(model.Walk().First());
+            barf.Add(HttpUtility.UrlEncode(barf[0]));
+
+            // string barf = model.Walk().First();
 
             // Pass generated tweet to a ViewModel
 
@@ -87,7 +92,10 @@ namespace twitter_baby_birding.Controllers
             model.Learn(tweets);
 
             // Create some permutations
-            string barf = model.Walk().First();
+            // string barf = model.Walk().First();
+            List<string> barf = new List<string>();
+            barf.Add(model.Walk().First());
+            barf.Add(HttpUtility.UrlEncode(barf[0]));
 
             // Pass generated tweet to a ViewModel
 
