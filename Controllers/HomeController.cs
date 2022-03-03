@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MarkovSharp.TokenisationStrategies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using twitter_baby_birding.Models;
 using TwitterSharp;
@@ -14,12 +15,19 @@ namespace twitter_baby_birding.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        // private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        // public HomeController(ILogger<HomeController> logger)
+        // {
+        //     _logger = logger;
+        // }
+
+        private TwitterBabyBirdingContext db;
+        public HomeController(TwitterBabyBirdingContext context)
         {
-            _logger = logger;
+            db = context;
         }
+
 
         [HttpGet("")]
         public IActionResult Index()
@@ -51,6 +59,25 @@ namespace twitter_baby_birding.Controllers
             // Create a new model
             var model = new StringMarkov(1);
 
+            // Train the model
+            model.Learn(tweets);
+
+            // Create some permutations
+            string barf = model.Walk().First();
+
+            // Pass generated tweet to a ViewModel
+
+            return View("Generate", barf);
+        }
+
+        [HttpGet("celeb")]
+        public IActionResult Celeb()
+        {
+
+            // Create a new model
+            var model = new StringMarkov(2);
+
+            var tweets = db.Tweets.Where(t=>t.Author == "trump").Select(t => t.Content);
             // Train the model
             model.Learn(tweets);
 
