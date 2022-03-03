@@ -54,7 +54,6 @@ namespace twitter_baby_birding.Controllers
                 ModelState.AddModelError("Handle", "This twitter account was not found.");
                 return View("Index");
             }
-
             TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(user);
             for(int i = 0; i < TweetArr.Length; i++)
             {

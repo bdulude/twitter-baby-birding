@@ -1,0 +1,70 @@
+@model TwitterHandle
+<div class="text-center">
+    <h4 class="text-light mb-5 w-50 mx-auto">Like the Great Victor Frankenstein; you will select the finest specimens and synthesize their essence to create something beautiful.</h4>
+    <form asp-controller="Home" asp-action="GenerateMulti" class="mb-5">
+        <div class="form-group" id="multiTweet">
+                <span asp-validation-for="MultiHandle[0]" class="text-danger"></span>
+            <div class="input-group input-group-lg w-50 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for="MultiHandle[0]" name="MultiHandle[0]" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+                <span asp-validation-for="MultiHandle[1]" class="text-danger"></span>
+            <div class="input-group input-group-lg w-50 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for="MultiHandle[1]" name="MultiHandle[1]" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+        @for(int i = 2; i <ViewBag.UsersCount; i++)
+        {
+            <span asp-validation-for=@Model.MultiHandle[i] class="text-danger"></span>
+            <div class="input-group input-group-lg w-50 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for=@Model.MultiHandle[i] name="MultiHandle[@i]" value="@ViewBag.UsersHandles[i]" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+        }
+        </div>
+        <span asp-validation-for="MultiHandle" class="text-danger" id="errOut"></span>
+        <div>
+
+        <p class="text-light">Removed Handles are removed from the end of the list</p>
+        <button class="btn btn-primary" id="addHandle">Add Handle</button>
+        <button class="btn btn-danger" id="removeHandle">Remove Handle</button>
+        <button class="btn btn-success">Synthesize!</button>
+        </div>
+    </form>
+</div>
+<script src="~/js/MultiTweet.js"></script>
+@* 
+<div class="form-inline add-set">
+                                <div class="form-group">
+                                    <label class="control-label">Exercise</label>
+                                    <select name="Sets[0].ExerciseId" class="form-control"><option value="1">Push Up</option>
+    <option value="1">Set Up</option>
+    </select>
+
+<div class="add-sets">
+    <div class="form-inline add-set">
+        <div class="form-group">
+            <label class="control-label">Exercise</label>
+            <select name="Sets[0].ExerciseId" class="form-control" asp-items="ViewBag.Exercises"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sets.First().Reps" class="control-label"></label>
+            <input asp-for="Sets.First().Reps" name="Sets[0].Reps" placeholder="Reps" class="form-control" />
+            <span asp-validation-for="Sets.First().Reps" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Sets.First().Weight" class="control-label"></label>
+            <input asp-for="Sets.First().Weight" name="Workout.Sets[0].Weight" class="form-control" />
+            <span asp-validation-for="Sets.First().Weight" class="text-danger" />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
+        </div>
+    </div>
+</div> *@
