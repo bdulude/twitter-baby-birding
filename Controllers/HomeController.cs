@@ -110,7 +110,7 @@ namespace twitter_baby_birding.Controllers
             return View("About");
         }
 
-              [HttpGet("MultiTweet")]
+        [HttpGet("MultiTweet")]
         public IActionResult MultiTweet()
         {
             ViewBag.UsersCount = 2;
