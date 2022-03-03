@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
+
 namespace twitter_baby_birding.Models
 {
     public class TwitterBabyBirdingContext : DbContext
