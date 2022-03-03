@@ -7,7 +7,7 @@ namespace twitter_baby_birding.Models
     {
         public TwitterBabyBirdingContext(DbContextOptions options):base(options){}
 
-        public DbSet<DbTweet> DbTweets {get; set;}
+        public DbSet<Tweet> Tweets {get; set;}
         public DbSet<User> Users {get; set;}
     }
 }
