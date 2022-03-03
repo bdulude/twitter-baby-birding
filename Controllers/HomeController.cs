@@ -31,6 +31,7 @@ namespace twitter_baby_birding.Controllers
         public async Task<IActionResult> Generate(TwitterHandle username)
         {
             // Get the tweets for a user
+            Console.WriteLine(username.Handle);
             TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(username.Handle);
 
             if(user == null){
@@ -38,7 +39,6 @@ namespace twitter_baby_birding.Controllers
                 ModelState.AddModelError("Handle", "This twitter account was not found.");
                 return View("Index");
             }
-
             TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(user);
             for(int i = 0; i < TweetArr.Length; i++)
             {
@@ -59,6 +59,82 @@ namespace twitter_baby_birding.Controllers
 
             // Pass generated tweet to a ViewModel
 
+            return View("Generate", barf);
+        }
+
+        [HttpGet("MultiTweet")]
+        public IActionResult MultiTweet()
+        {
+            ViewBag.UsersCount = 2;
+            return View();    
+        }
+
+
+        [HttpPost("multiBarf")]
+        public async Task<IActionResult> GenerateMulti(TwitterHandle username)
+        {
+            //Prelimanary Check to see if any of the users are null
+            foreach(string user in username.MultiHandle)
+            {
+                if(user== null)
+                {
+                    ModelState.AddModelError("MultiHandle", "Error! There is an empty Field!");
+                    return View("MultiTweet");
+                }
+                else if (user.Length > 15)
+                {
+                    ModelState.AddModelError("MultiHandle", $"Error! {user} is too long! Less than 15 Characters");
+                    return View("MultiTweet");
+                }
+            }
+            //Setting the variables to be more readable
+            int NumberOfUsers = username.MultiHandle.Count;
+            List<string> UserHandles = username.MultiHandle;
+            TwitterSharp.Response.RUser.User[] UsersArray= new TwitterSharp.Response.RUser.User[NumberOfUsers];
+            
+            for (int i = 0; i < username.MultiHandle.Count; i++)
+            {
+                //Set the User
+                UsersArray[i] = await TweetFetcher.GetUser(username.MultiHandle[i]);
+                if(UsersArray[i] == null)
+                {
+                    //If the User is null add an error to the Model
+                    ModelState.AddModelError($"MultiHandle[{i}]", "Error! Handle is not valid!!");
+                }
+            }
+            //If Any of the Users are null Then the state is invalid
+            if(!ModelState.IsValid)
+            {
+                    ViewBag.UsersCount = UserHandles.Count;
+                    ViewBag.UsersHandles = UserHandles;
+                    return View("MultiTweet",username);
+            }
+
+            // Determine how much data per user
+            // int tweetsPerUser = (int)MathF.Floor(100/NumberOfUsers);
+            int tweetsPerUser = 100;
+
+            //Create an array to hold all the gotten tweets
+            TwitterSharp.Response.RTweet.Tweet[] TweetArr = new TwitterSharp.Response.RTweet.Tweet[0];
+            foreach(TwitterSharp.Response.RUser.User User in UsersArray)
+            {
+                //Get Tweets for that user and concat them onto the newTweets
+                TwitterSharp.Response.RTweet.Tweet[] newTweets = await TweetFetcher.FindByHandle(User,tweetsPerUser);
+                TweetArr = TweetArr.Concat(newTweets).ToArray();
+            }
+
+            //Filter them out
+            string[] tweets = TweetArr.Where(t => !t.Text.StartsWith("RT @")).Select(t => t.Text).ToArray();
+
+            // Create a new model
+            var model = new StringMarkov(1);
+
+            // Train the model
+            model.Learn(tweets);
+
+            // Create some permutations
+            string barf = model.Walk().First();
+            Console.WriteLine(barf);
             return View("Generate", barf);
         }
 
