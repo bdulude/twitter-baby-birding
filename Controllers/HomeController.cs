@@ -30,7 +30,12 @@ namespace twitter_baby_birding.Controllers
         [HttpPost("barf")]
         public async Task<IActionResult> Generate(TwitterHandle username)
         {
-            // Get the tweets for a user
+            if(username.Handle == null){
+                // Check if they actually entered anything
+                ModelState.AddModelError("Handle", "This twitter account was not found.");
+                return View("Index");
+            }
+            // Get the user
             TwitterSharp.Response.RUser.User user = await TweetFetcher.GetUser(username.Handle);
 
             if(user == null){
@@ -60,6 +65,12 @@ namespace twitter_baby_birding.Controllers
             // Pass generated tweet to a ViewModel
 
             return View("Generate", barf);
+        }
+
+        [HttpGet("about")]
+        public IActionResult About()
+        {
+            return View("About");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
