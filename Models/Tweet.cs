@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace twitter_baby_birding.Models
 {
-    public class DbTweet
+    public class Tweet
     {
         [Key]
         public int Id {get; set;}

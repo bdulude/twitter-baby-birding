@@ -6,7 +6,7 @@ namespace twitter_baby_birding.Models
     public class User
     {
         [Key]
-        public string Author {get; set;}
-        public List<DbTweet> DbTweets {get; set;}
+        public string Name {get; set;}
+        public List<Tweet> Tweets {get; set;}
     }
 }
