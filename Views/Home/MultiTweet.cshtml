@@ -32,45 +32,15 @@
             </div>
         }
         </div>
-        <span asp-validation-for="MultiHandle" class="text-danger" id="errOut"></span>
+        <p asp-validation-for="MultiHandle" class="text-danger" id="errOut"></p>
         <div>
-
-        <button class="btn btn-success mb-3">Synthesize!</button>
-        <div class="btn-group d-block mb-2" role="group">
-            <button class="btn btn-primary" id="addHandle">Add Ingredient</button>
-            <button class="btn btn-danger" id="removeHandle" title="Removing an ingredient takes from the end of the list.">Remove Ingredient</button>
-        </div>
-        <p class="text-light">Removing an ingredient takes from the end of the list.</p>
+            <button class="btn btn-success mb-3">Synthesize!</button>
+            <div class="btn-group d-block mb-2" role="group">
+                <button class="btn btn-primary" id="addHandle">Add Ingredient</button>
+                <button class="btn btn-danger" id="removeHandle" title="Removing an ingredient takes from the end of the list.">Remove Ingredient</button>
+            </div>
+            <p class="text-light mb-0">Removing an ingredient takes from the end of the list.</p>
         </div>
     </form>
 </div>
 <script src="~/js/MultiTweet.js"></script>
-@* 
-<div class="form-inline add-set">
-                                <div class="form-group">
-                                    <label class="control-label">Exercise</label>
-                                    <select name="Sets[0].ExerciseId" class="form-control"><option value="1">Push Up</option>
-    <option value="1">Set Up</option>
-    </select>
-
-<div class="add-sets">
-    <div class="form-inline add-set">
-        <div class="form-group">
-            <label class="control-label">Exercise</label>
-            <select name="Sets[0].ExerciseId" class="form-control" asp-items="ViewBag.Exercises"></select>
-        </div>
-        <div class="form-group">
-            <label asp-for="Sets.First().Reps" class="control-label"></label>
-            <input asp-for="Sets.First().Reps" name="Sets[0].Reps" placeholder="Reps" class="form-control" />
-            <span asp-validation-for="Sets.First().Reps" class="text-danger" />
-        </div>
-        <div class="form-group">
-            <label asp-for="Sets.First().Weight" class="control-label"></label>
-            <input asp-for="Sets.First().Weight" name="Workout.Sets[0].Weight" class="form-control" />
-            <span asp-validation-for="Sets.First().Weight" class="text-danger" />
-        </div>
-        <div class="form-group">
-            <button class="btn btn-remove-set" data-toggle="tooltip" title="Remove Set"><span class="glyphicon glyphicon-minus"></span></button>
-        </div>
-    </div>
-</div> *@

@@ -194,7 +194,7 @@ namespace twitter_baby_birding.Controllers
             Random rand = new Random();
             foreach (string Celeb in Celebs)
             {
-                var tweets = db.Tweets.Where(t=>t.Author == Celeb).Select(t => t.Content).ToArray();
+                var tweets = db.Tweets.Where(t=>t.Author == Celeb && !t.Content.StartsWith("http")).Select(t => t.Content).ToArray();
                 //Get 100 Random tweets from a Celeb
                 for (int i = 0; i < 100; i++)
                 {

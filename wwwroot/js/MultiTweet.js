@@ -31,7 +31,7 @@ function RemoveHandle(e)
         groups[groups.length-1].remove();
     }
     else
-        document.querySelector("#errOut").innerText = "To combine essences together we require at least Two!"
+        document.querySelector("#errOut").innerText = "We must combine at least two essences!"
 
 }
 
