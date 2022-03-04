@@ -192,6 +192,41 @@ namespace twitter_baby_birding.Controllers
             return View("Privacy");
         }
 
+        [HttpGet("chaos/celebs")]
+        public IActionResult Chaos()
+        {
+            // Create a new model
+            var model = new StringMarkov(1);
+
+            List<string> tweetList = new List<string>();
+            
+            List<string> Celebs =  db.Users.Select(t => t.Name).ToList();
+            
+            ViewBag.UsersHandles = Celebs; 
+            Random rand = new Random();
+            foreach (string Celeb in Celebs)
+            {
+                var tweets = db.Tweets.Where(t=>t.Author == Celeb).Select(t => t.Content).ToArray();
+                //Get 100 Random tweets from a Celeb
+                for (int i = 0; i < 100; i++)
+                {
+                    tweetList.Add(tweets[rand.Next(0,tweetList.Count)]);
+                }
+            }
+            // Train the model
+            model.Learn(tweetList);
+
+            // Create some permutations
+            // string barf = model.Walk().First();
+            List<string> barf = new List<string>();
+            barf.Add(model.Walk().First());
+            barf.Add(HttpUtility.UrlEncode(barf[0]));
+
+            // Pass generated tweet to a ViewModel
+
+            return View("GenerateChaos", barf);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
