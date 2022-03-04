@@ -4,10 +4,10 @@ function AddHandle(e)
     let twitterHandleList = document.getElementById("multiTweet");
     console.log(twitterHandleList);
     let groups = twitterHandleList.querySelectorAll(".input-group");
-    if(groups.length <= 10)
+    if(groups.length < 10)
     {
         document.querySelector("#errOut").innerText = "";
-        let newInput = `<div class="input-group input-group-lg w-50 mx-auto">
+        let newInput = `<div class="input-group input-group-lg w-50 mx-auto mb-3">
         <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">@</span>
         </div>
@@ -16,7 +16,7 @@ function AddHandle(e)
         $("#multiTweet").append(newInput);
     }else
     {
-        document.querySelector("#errOut").innerText = "That's too many Essences to fuse together! Keep it under Ten"
+        document.querySelector("#errOut").innerText = "Your scientific hubris blinds you! Keep it under eleven ingredients."
     }
 }
 
