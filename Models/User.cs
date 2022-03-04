@@ -8,6 +8,5 @@ namespace twitter_baby_birding.Models
     public class User
     {
         public string Name {get; set;}
-        public List<Tweet> Tweets {get; set;}
     }
 }
