@@ -99,12 +99,6 @@ namespace twitter_baby_birding.Controllers
             return View("GenerateCeleb", barf);
         }
 
-        [HttpGet("about")]
-        public ViewResult About()
-        {
-            return View("About");
-        }
-
         [HttpGet("MultiTweet")]
         public IActionResult MultiTweet()
         {
@@ -186,13 +180,7 @@ namespace twitter_baby_birding.Controllers
             return View("GenerateChimera", barf);
         }
 
-        [HttpGet("privacy")]
-        public IActionResult Privacy()
-        {
-            return View("Privacy");
-        }
-
-        [HttpGet("chaos/celebs")]
+        [HttpGet("celeb/chaos")]
         public IActionResult Chaos()
         {
             // Create a new model
@@ -225,6 +213,18 @@ namespace twitter_baby_birding.Controllers
             // Pass generated tweet to a ViewModel
 
             return View("GenerateChaos", barf);
+        }
+
+        [HttpGet("privacy")]
+        public IActionResult Privacy()
+        {
+            return View("Privacy");
+        }
+
+        [HttpGet("about")]
+        public ViewResult About()
+        {
+            return View("About");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
