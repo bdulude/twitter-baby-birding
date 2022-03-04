@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Baby Bird";
+}
+@model List<string>
+<div class="text-center bg-dark p-3 rounded">
+    <h4 class="text-light">Mama came back with this for you:</h4>
+    <p class="w-50 bg-light mx-auto p-3 my-3 rounded">@Model[0]</p>
+    <a href="." class="btn btn-success">Go again</a>
+    <a class="btn btn-primary" href="https://twitter.com/intent/tweet?text=@Model[1]">Tweet</a>
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+</div>

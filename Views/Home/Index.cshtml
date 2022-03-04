@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Baby Bird";
+}
+@model TwitterHandle
+<h4 class="text-light text-center mb-4 w-50 mx-auto">It's like if the ocean was filled with tweets, and your parent just came back to feed you, and you're a baby emperor penguin.</h4>
+<div class="text-center bg-dark rounded p-3">
+    <h5 class="text-light mx-auto">Where did your parent go fishing?</h5>
+    <form asp-controller="Home" asp-action="Generate" class="mb-3">
+        <div class="form-group">
+            <div class="input-group input-group-lg w-50 mx-auto">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for="Handle" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+            <span asp-validation-for="Handle" class="text-danger"></span>
+        </div>
+        <button class="btn btn-success">Vomit</button>
+    </form>
+    <div class="d-flex justify-content-between">
+        <h5 class="text-light mb-3">Or try one of these meals:</h5>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap">
+        @foreach (User celeb in ViewBag.celebs)
+        {
+            <partial name="_CelebCard" model="@celeb"></partial>
+        }
+        <div class="card text-white bg-success mb-3" style="width: 13rem;">
+            <div class="card-body">
+                <h5 class="card-title">CHIMERA</h5>
+                <a href="/multitweet" class="btn btn-success bg-success-dark">Do Alchemy</a>
+            </div>
+        </div>
+        <div class="card text-white bg-danger mb-3" style="width: 13rem;">
+            <div class="card-body">
+                <h5 class="card-title">Ć̷͎̩̣̭̠̹̞̰͠H̴̡̭̟̦̗̪̺̱͕͕̦͎̠̒̒̕͜Ȁ̴̺̲̠̃̆̈́̅́͆Ơ̷͈̳̗̹͍̙̑͒̽̀͌͑̎̃̔͗͌̕͘͝S̵͇͙̝̱͖̿̓̕</h5>
+                <a href="/celeb/chaos" class="btn btn-danger border-dark bg-dark">Touch Evil</a>
+            </div>
+        </div>
+    </div>
+</div>

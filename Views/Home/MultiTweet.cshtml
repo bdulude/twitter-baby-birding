@@ -1,0 +1,46 @@
+@{
+    ViewData["Title"] = "Chimera - Baby Bird";
+}
+
+@model TwitterHandle
+<div class="text-center">
+    <h4 class="text-light mb-4 w-50 mx-auto">Like the great Victor Frankenstein, you will select the finest specimens and synthesize their essences into something beautiful.</h4>
+    <form asp-controller="Home" asp-action="GenerateMulti" class="bg-dark rounded p-3">
+        <div class="form-group" id="multiTweet">
+                <span asp-validation-for="MultiHandle[0]" class="text-danger"></span>
+            <div class="input-group input-group-lg w-50 mx-auto mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for="MultiHandle[0]" name="MultiHandle[0]" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+                <span asp-validation-for="MultiHandle[1]" class="text-danger"></span>
+            <div class="input-group input-group-lg w-50 mx-auto mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for="MultiHandle[1]" name="MultiHandle[1]" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+        @for(int i = 2; i <ViewBag.UsersCount; i++)
+        {
+            <span asp-validation-for=@Model.MultiHandle[i] class="text-danger"></span>
+            <div class="input-group input-group-lg w-50 mx-auto mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                </div>
+                <input asp-for=@Model.MultiHandle[i] name="MultiHandle[@i]" value="@ViewBag.UsersHandles[i]" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" class="form-control">
+            </div>
+        }
+        </div>
+        <p asp-validation-for="MultiHandle" class="text-danger" id="errOut"></p>
+        <div>
+            <button class="btn btn-success mb-3">Synthesize!</button>
+            <div class="btn-group d-block mb-2" role="group">
+                <button class="btn btn-primary" id="addHandle">Add Ingredient</button>
+                <button class="btn btn-danger" id="removeHandle" title="Removing an ingredient takes from the end of the list.">Remove Ingredient</button>
+            </div>
+            <p class="text-light mb-0">Removing an ingredient takes from the end of the list.</p>
+        </div>
+    </form>
+</div>
+<script src="~/js/MultiTweet.js"></script>

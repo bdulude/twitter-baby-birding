@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# CUSTOM:
+appsettings.json 
+
 # User-specific files
 *.rsuser
 *.suo
@@ -12,6 +15,8 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*/appsettings.json 
+*/appsettings.Development.json
 
 # Mono auto generated files
 mono_crash.*
@@ -431,3 +436,5 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+appsettings.Development.json
+appsettings.json
