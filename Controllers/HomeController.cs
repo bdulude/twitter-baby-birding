@@ -42,7 +42,7 @@ namespace twitter_baby_birding.Controllers
         {
             if(username.Handle == null){
                 // Check if they actually entered anything
-                ModelState.AddModelError("Handle", "This twitter account was not found.");
+                ModelState.AddModelError("Handle", "You must enter a username.");
                 ViewBag.celebs = db.Users;
                 return View("Index");
             }
@@ -52,6 +52,7 @@ namespace twitter_baby_birding.Controllers
             if(user == null){
                 //It errored out...
                 ModelState.AddModelError("Handle", "This twitter account was not found.");
+                ViewBag.celebs = db.Users;
                 return View("Index");
             }
             TwitterSharp.Response.RTweet.Tweet[] TweetArr = await TweetFetcher.FindByHandle(user);
@@ -81,7 +82,7 @@ namespace twitter_baby_birding.Controllers
             return View("Generate", barf);
         }
 
-        [HttpGet("{celeb}")]
+        [HttpGet("celeb/{celeb}")]
         public IActionResult Celeb(string celeb)
         {
 
@@ -121,18 +122,18 @@ namespace twitter_baby_birding.Controllers
         [HttpPost("multiBarf")]
         public async Task<IActionResult> GenerateMulti(TwitterHandle username)
         {
-            //Prelimanary Check to see if any of the users are null
+            //Preliminary Check to see if any of the users are null
             for (int i = 0; i < username.MultiHandle.Count; i++)
             {
                 string user = username.MultiHandle[i];
                 if(user== null)
                 {
-                    ModelState.AddModelError($"MultiHandle[{i}]", "Error! There is an empty Field!");
+                    ModelState.AddModelError($"MultiHandle[{i}]", "There is an empty field!");
                     return View("MultiTweet");
                 }
                 else if (user.Length > 15)
                 {
-                    ModelState.AddModelError($"MultiHandle[{i}]", $"Error! {user} is too long! Less than 15 Characters");
+                    ModelState.AddModelError($"MultiHandle[{i}]", $"{user} is too long! Each username must be less than 15 characters");
                     return View("MultiTweet");
                 }
             }
@@ -148,7 +149,7 @@ namespace twitter_baby_birding.Controllers
                 if(UsersArray[i] == null)
                 {
                     //If the User is null add an error to the Model
-                    ModelState.AddModelError($"MultiHandle[{i}]", "Error! Handle is not valid!!");
+                    ModelState.AddModelError($"MultiHandle[{i}]", "This username is not associated with a valid twitter account.");
                 }
             }
             //If Any of the Users are null Then the state is invalid
@@ -184,8 +185,6 @@ namespace twitter_baby_birding.Controllers
             List<string> barf = new List<string>();
             barf.Add(model.Walk().First());
             barf.Add(HttpUtility.UrlEncode(barf[0]));
-
-            // string barf = model.Walk().First();
 
             // Pass generated tweet to a ViewModel
 
