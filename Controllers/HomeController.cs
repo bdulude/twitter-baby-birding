@@ -27,7 +27,7 @@ namespace twitter_baby_birding.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            ViewBag.celebs = db.Users;
+            ViewBag.celebs = db.Users.ToList();
             return View("Index");
         }
 
