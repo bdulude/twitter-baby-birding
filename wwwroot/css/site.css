@@ -72,6 +72,31 @@ body {
 
 /* Custom CSS
 -------------------------------------------------- */
+* {
+  font-family: 'Noto Sans Display', sans-serif;
+}
+
 body {
   background-color: #433c9e;
+}
+
+.bg-purple {
+  background-color: #873c9e;
+}
+
+.bg-purple-darker {
+  background-color: #5a2969;
+}
+
+.border-purple-darker {
+  border-color: #5a2969;
+}
+
+#title {
+  font-size: 3rem;
+  text-shadow: 0px 0px 10px #110f27;
+}
+
+#title:hover {
+  text-shadow: 0px 0px 20px #000000;
 }

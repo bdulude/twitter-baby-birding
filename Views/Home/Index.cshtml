@@ -17,12 +17,20 @@
         </div>
         <button class="btn btn-success">Vomit</button>
     </form>
-    <h5 class="text-light mb-3 mx-auto">Or try one of these meals:</h5>
+    <div class="d-flex justify-content-between">
+        <h5 class="text-light mb-3">Or try one of these meals:</h5>
+        <h4 class="mb-3 text-danger"><small>Now with <a href="/multitweet">Chimera Mode</a>!</small></h4>
+    </div>
     <div class="d-flex justify-content-between flex-wrap">
         @foreach (User celeb in ViewBag.celebs)
         {
             <partial name="_CelebCard" model="@celeb"></partial>
         }
+        <div class="card text-white bg-danger mb-3" style="width: 13rem;">
+            <div class="card-body">
+                <h5 class="card-title">Ć̷͎̩̣̭̠̹̞̰͠H̴̡̭̟̦̗̪̺̱͕͕̦͎̠̒̒̕͜Ȁ̴̺̲̠̃̆̈́̅́͆Ơ̷͈̳̗̹͍̙̑͒̽̀͌͑̎̃̔͗͌̕͘͝S̵͇͙̝̱͖̿̓̕</h5>
+                <a href="/celeb/chaos" class="btn btn-danger border-dark bg-dark">Touch Evil</a>
+            </div>
+        </div>
     </div>
-    <h4 class="mb-3 text-danger"><small>Now with <a href="/multitweet">Chimera Mode</a>!</small></h4>
 </div>
