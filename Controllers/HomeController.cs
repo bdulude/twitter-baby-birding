@@ -16,12 +16,6 @@ namespace twitter_baby_birding.Controllers
 {
     public class HomeController : Controller
     {
-        // private readonly ILogger<HomeController> _logger;
-
-        // public HomeController(ILogger<HomeController> logger)
-        // {
-        //     _logger = logger;
-        // }
 
         private TwitterBabyBirdingContext db;
         public HomeController(TwitterBabyBirdingContext context)
@@ -197,7 +191,6 @@ namespace twitter_baby_birding.Controllers
         {
             return View("Privacy");
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
