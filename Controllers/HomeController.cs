@@ -192,6 +192,12 @@ namespace twitter_baby_birding.Controllers
             return View("GenerateChimera", barf);
         }
 
+        [HttpGet("privacy")]
+        public IActionResult Privacy()
+        {
+            return View("Privacy");
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
