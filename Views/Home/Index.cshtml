@@ -17,7 +17,6 @@
         </div>
         <button class="btn btn-success">Vomit</button>
     </form>
-    <h4 class="mb-3 text-danger"><small>Now with <a href="/multitweet">Chimera Mode</a>!</small></h4>
     <h5 class="text-light mb-3 mx-auto">Or try one of these meals:</h5>
     <div class="d-flex justify-content-between flex-wrap">
         @foreach (User celeb in ViewBag.celebs)
@@ -25,4 +24,5 @@
             <partial name="_CelebCard" model="@celeb"></partial>
         }
     </div>
+    <h4 class="mb-3 text-danger"><small>Now with <a href="/multitweet">Chimera Mode</a>!</small></h4>
 </div>

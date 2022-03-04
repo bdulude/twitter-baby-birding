@@ -138,6 +138,7 @@ namespace twitter_baby_birding.Controllers
                 }
             }
             //Setting the variables to be more readable
+
             int NumberOfUsers = username.MultiHandle.Count;
             List<string> UserHandles = username.MultiHandle;
             TwitterSharp.Response.RUser.User[] UsersArray= new TwitterSharp.Response.RUser.User[NumberOfUsers];
@@ -153,10 +154,10 @@ namespace twitter_baby_birding.Controllers
                 }
             }
             //If Any of the Users are null Then the state is invalid
+            ViewBag.UsersHandles = UserHandles;
             if(!ModelState.IsValid)
             {
                     ViewBag.UsersCount = UserHandles.Count;
-                    ViewBag.UsersHandles = UserHandles;
                     return View("MultiTweet",username);
             }
 
@@ -188,7 +189,7 @@ namespace twitter_baby_birding.Controllers
 
             // Pass generated tweet to a ViewModel
 
-            return View("Generate", barf);
+            return View("GenerateChimera", barf);
         }
 
 
