@@ -30,7 +30,7 @@ If one person's tweets isn't enough why not two? or three? With this app you can
 
 ### Chaotic Tweet Generator
 
-![Chaos](/wwwroot/img/chaosGenerator.gif)
+![Chaos](/wwwroot/img/ChaosGenerator.gif)
 
 Don't know who to pick to generate a tweet for? Why not let chaos decide? With this generator we pick 100 tweets from each personality in our database and generate a tweet just for you.
 
