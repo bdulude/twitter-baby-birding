@@ -13,32 +13,47 @@ The quality of tweets may vary but it will let you see a snapshot of that user's
 ### Tweet Generator
 
 <!-- ![Tweets](/wwwroot/img/TweetGenerator.gif) -->
-<img src="./wwwroot/img/TweetGenerator.gif" alt="Tweet Gen Gif" width="320" height="180"/>
+<div style="display:flex">
 
-Generate Tweets using the userhandle's 100 most recent tweets. Retweets and QuoteTweets are excluded
+<img src="./wwwroot/img/TweetGenerator.gif" alt="Tweet Gen Gif" width="320" height="180" style="margin-right:10px"/>
+
+<p>Generate Tweets using the userhandle's 100 most recent tweets. Retweets and QuoteTweets are excluded</p>
+</div>
+<hr>
 
 ### Celebrity Tweet Generator
 
-<!-- ![Personality](/wwwroot/img/PersonalityGenerator.gif) -->
-<img src="./wwwroot/img/PersonalityGenerator.gif" alt="Tweet Gen Gif" width="320" height="180"/>
+<div style="display:flex">
 
-From our dataset of personalities generate a tweet based off of every tweet they've made since 2020
+<!-- ![Personality](/wwwroot/img/PersonalityGenerator.gif) -->
+<img src="./wwwroot/img/PersonalityGenerator.gif" alt="Tweet Gen Gif" width="320" height="180" style="margin-right:10px"/>
+
+<p>From our dataset of personalities generate a tweet based off of every tweet they've made since 2020</p>
+
+</div>
+<hr>
 
 ### Chimera Tweet Generator
 
+<div style="display:flex">
 <!-- ![Chimera](/wwwroot/img/ChimeraGenerator.gif) -->
-<img src="./wwwroot/img/ChimeraGenerator.gif" alt="Tweet Gen Gif" width="320" height="180"/>
+<img src="./wwwroot/img/ChimeraGenerator.gif" alt="Tweet Gen Gif" width="320" height="180"  style="margin-right:10px"/>
 
-If one person's tweets isn't enough why not two? or three? With this app you can create an amalgamation of up to 10 different users to generate a tweet from their past 100 tweets each.
+<p>If one person's tweets isn't enough why not two? or three? With this app you can create an amalgamation of up to 10 different users to generate a tweet from their past 100 tweets each.</p>
+
+</div>
+<hr>
 
 ### Chaotic Tweet Generator
 
+<div style="display:flex">
 <!-- ![Chaos](/wwwroot/img/ChaosGenerator.gif) -->
-<img src="./wwwroot/img/ChaosGenerator.gif" alt="Tweet Gen Gif" width="320" height="180"/>
-
-Don't know who to pick to generate a tweet for? Why not let chaos decide? With this generator we pick 100 tweets from each personality in our database and generate a tweet just for you.
+<img src="./wwwroot/img/ChaosGenerator.gif" alt="Tweet Gen Gif" width="320" height="180"  style="margin-right:10px"/>
 
 
+<p>Don't know who to pick to generate a tweet for? Why not let chaos decide? With this generator we pick 100 tweets from each personality in our database and generate a tweet just for you.</p>
+
+</div>
 <hr>
 
 ## Credits
